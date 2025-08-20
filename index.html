@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 Apology Chic Valley 💖</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to top, #ffe6f0, #fff0f5);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    h1, h2, p {
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d63384;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    h2 {
+      color: #e75480;
+      margin-top: 20px;
+    }
+
+    p {
+      color: #444;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #ff85c1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #d63384;
+    }
+
+    /* Valley Hills */
+    #valley {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: #f9d5e5;
+      border-top-left-radius: 50% 50px;
+      border-top-right-radius: 50% 50px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .hill {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 200px;
+      background: #ffc0cb;
+      border-radius: 50%;
+      left: -50%;
+      animation: hillMove 20s linear infinite;
+    }
+
+    .hill:nth-child(2) {
+      background: #ffb6c1;
+      height: 180px;
+      animation-duration: 25s;
+    }
+
+    @keyframes hillMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Floating Elements */
+    .floating {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-500px) scale(1.2); opacity: 0; }
+    }
+
+    /* Game Section */
+    #gameArea {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 700px;
+      background: #fff0f5;
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+    }
+
+    #flowers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .flower {
+      font-size: 36px;
+      cursor: pointer;
+      margin: 8px;
+      transition: transform 0.2s, opacity 0.3s;
+    }
+
+    .flower:hover {
+      transform: scale(1.3);
+    }
+
+    #gameMessage {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #e75480;
+      margin-top: 10px;
+      min-height: 1.5rem;
+    }
+
+    #progressContainer {
+      width: 80%;
+      height: 20px;
+      background: #ffd6e8;
+      border-radius: 10px;
+      margin: 10px auto;
+      overflow: hidden;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0;
+      background: #d63384;
+      border-radius: 10px;
+      transition: width 0.3s;
+    }
+
+    #heartsCollected {
+      font-size: 1rem;
+      margin-top: 5px;
+      color: #d63384;
+    }
+
+    /* Apology Wall */
+    #apologyWall {
+      background: #ffe6f0;
+      border: 2px dashed #ff85c1;
+      padding: 1rem;
+      border-radius: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 20px auto;
+      width: 80%;
+      text-align: center;
+    }
+
+    .note {
+      background: #ffd6e8;
+      border: 1px solid #ff85c1;
+      padding: 0.8rem;
+      margin: 0.5rem;
+      border-radius: 12px;
+      box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .note:hover {
+      transform: scale(0.5);
+    }
+
+    .popup-note {
+      position: absolute;
+      background: #d63384;
+      color: white;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      font-size: 1rem;
+      z-index: 10;
+      animation: popup 0.5s ease-out, fadeOut 0.5s ease-in 0.5s forwards;
+      transform-origin: center;
+    }
+
+    @keyframes popup {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>💖 Apology Valley 💖</h1>
+  <p>Click flowers to see if she forgave me! 🌸</p>
+
+  <!-- Valley hills -->
+  <div id="valley">
+    <div class="hill"></div>
+    <div class="hill"></div>
+  </div>
+
+  <!-- Game Section -->
+  <div id="gameArea">
+    <h2>🌼 Flower Forgiveness Game 🌼</h2>
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+    <div id="heartsCollected">Hearts Collected: 0</div>
+    <div id="flowers"></div>
+    <div id="gameMessage"></div>
+  </div>
+
+  <!-- Apology Wall -->
+  <h2>💌 Wall of Apologies</h2>
+  <div id="apologyWall"></div>
+  <div style="text-align:center; margin-bottom: 30px;">
+    <input type="text" id="noteInput" placeholder="Write your apology note..." style="padding:8px; border-radius:10px; width:60%;">
+    <button onclick="addNote()">Send Apology</button>
+  </div>
+
+  <script>
+    // Floating elements: hearts, stars, butterflies
+    const floatElements = ['❤','💖','✨','🦋','💗'];
+    setInterval(() => {
+      const el = document.createElement("div");
+      el.className = "floating";
+      el.textContent = floatElements[Math.floor(Math.random()*floatElements.length)];
+      el.style.left = Math.random()*window.innerWidth + "px";
+      el.style.fontSize = (24 + Math.random()*24) + "px";
+      el.style.animationDuration = (6 + Math.random()*4) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 10000);
+    }, 800);
+
+    // Apology quotes
+    const quotes = [
+      "I'm truly sorry 💖",
+      "Forgive me, please 🙏",
+      "i am really very sorry 💕",
+      "I didn't mean to hurt you 💗",
+      "Please accept my apology 🌸",
+      "I regret my mistake 💖",
+      "Hoping for your forgiveness 💕"
+    ];
+
+    function showRandomQuote() {
+    const quote = quotes[Math.floor(Math.random()*quotes.length)];
+    const popup = document.createElement("div");
+    popup.className = "popup-note";
+    popup.textContent = quote;
+    // Random position anywhere on screen
+    popup.style.left = Math.random() * (window.innerWidth - 150) + "px";
+    popup.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 2000); // shorter duration for faster pop
+  }
+
+  // Show quotes faster and more often
+  setInterval(showRandomQuote, 2000); // every 2 seconds
+
+    // Apology Wall
+    function addNote() {
+      const input = document.getElementById("noteInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Pop-up
+      const popup = document.createElement("div");
+      popup.className = "popup-note";
+      popup.textContent = text;
+      const rect = input.getBoundingClientRect();
+      popup.style.left = rect.left + (rect.width/2) - 50 + "px";
+      popup.style.top = rect.top - 50 + "px";
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 2500);
+
+      // Wall
+      const note = document.createElement("div");
+      note.className = "note";
+      note.textContent = text;
+      document.getElementById("apologyWall").appendChild(note);
+
+      input.value = "";
+    }
+
+    // Game
+    const flowersContainer = document.getElementById("flowers");
+    const progressBar = document.getElementById("progressBar");
+    const heartsCounter = document.getElementById("heartsCollected");
+    const gameMessage = document.getElementById("gameMessage");
+    const totalHearts = 10;
+    let collectedHearts = 0;
+
+    function endGame() {
+      gameMessage.textContent = "🎉 Yay! She forgives you! 💖";
+      flowersContainer.innerHTML = "";
+    }
+
+    // Generate flowers
+    for(let i=0;i<15;i++){
+      const f = document.createElement("div");
+      f.className = "flower";
+      f.textContent = "🌸";
+      f.addEventListener("click", ()=>{
+        collectedHearts++;
+        f.remove();
+        heartsCounter.textContent = `Hearts Collected: ${collectedHearts}`;
+        progressBar.style.width = (collectedHearts/totalHearts*100)+"%";
+
+        if(collectedHearts>=totalHearts){
+          endGame();
+        } else if(collectedHearts>totalHearts/2){
+          gameMessage.textContent = "Keep going! Almost there!";
+        } else {
+          gameMessage.textContent = "Click flowers to collect hearts!";
+        }
+      });
+      flowersContainer.appendChild(f);
+    }
+  </script>
+</body>
+</html>
